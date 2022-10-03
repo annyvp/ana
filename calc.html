@@ -1,0 +1,82 @@
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;input id=&quot;hi&quot; type=&quot;number&quot; placeholder=&quot;hora inicial&quot;&gt;
+  &lt;input id=&quot;mi&quot; type=&quot;number&quot; placeholder=&quot;minuto inicial&quot;&gt;&lt;br&gt;
+  &lt;input id=&quot;hf&quot; type=&quot;number&quot; placeholder=&quot;hora final&quot; &gt;
+  &lt;input id=&quot;mf&quot; type=&quot;number&quot; placeholder=&quot;minuto final&quot;&gt;&lt;br&gt;
+ &lt;p id=&quot;ht&quot;&gt;resultado hora&lt;/p&gt;
+ &lt;p id=&quot;mt&quot;&gt;resultado minuto&lt;/p&gt;&lt;br&gt;
+ &lt;button onclick=&quot;soma()&quot;&gt;soma&lt;/button&gt;
+ &lt;button onclick=&quot;reset()&quot;&gt;reset&lt;/button&gt;
+ &lt;button onclick=&quot;subtrai()&quot;&gt;subtrai&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+&lt;script&gt;
+    var hi,mi,hf,mf,ht,mt
+    function carregaValores(){
+         hi=Number(document.getElementById(&quot;hi&quot;).value)
+         mi=Number(document.getElementById(&quot;mi&quot;).value)
+         hf=Number(document.getElementById(&quot;hf&quot;).value)
+         mf=Number(document.getElementById(&quot;mf&quot;).value)
+         ht=document.getElementById(&quot;ht&quot;)
+         mt=document.getElementById(&quot;mt&quot;)
+    }
+        function soma(){
+            carregaValores()
+            var rh= hi+hf
+            var rm= mi+mf
+            while(rm&gt;59){
+                rh++
+                rm=rm-60
+            }
+            ht.innerHTML=rh
+            mt.innerHTML=rm
+        }
+        function reset(){
+            document.getElementById(&quot;hi&quot;).value = null
+            document.getElementById(&quot;mi&quot;).value = null
+            document.getElementById(&quot;hf&quot;).value = null
+            document.getElementById(&quot;mf&quot;).value = null
+            document.getElementById(&quot;ht&quot;).innerHTML=&quot;resultado hora&quot;
+            document.getElementById(&quot;mt&quot;).innerHTML=&quot;resultado minuto&quot;
+
+        }
+        function subtrai(){
+            carregaValores()
+            var rh,rm
+            while(mi&gt;59){
+                hi++
+                mi=mi-60
+            }
+            while(mf&gt;59){
+                hf++
+                mf=mf-60
+            }
+            if (hf&gt;hi){
+                rh=hf-hi
+                rm=mf-mi
+            }
+            else {
+                rh=hi-hf
+                if(mf&gt;mi &amp;&amp; hi==hf){
+                    rm=mf-mi
+                }
+                else{
+                    rm=mi-mf
+                }
+            }
+            while(rm&lt;0){
+                rh--
+                rm=rm+60
+            }
+            ht.innerHTML=rh
+            mt.innerHTML=rm
+        }
+&lt;/script&gt;
